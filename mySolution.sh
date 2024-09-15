@@ -18,13 +18,13 @@ rm -rf maliciousFiles
 mkdir -p secretDir
 chmod 755 secretDir
 
-# Create an empty .secret file
+# Create an empty .secret file with read and write permissions only
 touch secretDir/.secret
-chmod 644 secretDir/.secret
+chmod 600 secretDir/.secret  # Changed from 644 to 600
 
 # Ensure generateSecret.sh is in the correct path and is executable
 chmod +x generateSecret.sh
-ls -la  # List files again to confirm permissions
+ls -la secretDir  # List files in secretDir to confirm permissions
 
 # Run generateSecret.sh
 ./generateSecret.sh
