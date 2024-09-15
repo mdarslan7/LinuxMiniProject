@@ -18,6 +18,10 @@ rm -rf maliciousFiles
 mkdir -p secretDir
 chmod 755 secretDir
 
+# Create an empty .secret file
+touch secretDir/.secret
+chmod 644 secretDir/.secret
+
 # Ensure generateSecret.sh is in the correct path and is executable
 chmod +x generateSecret.sh
 ls -la  # List files again to confirm permissions
@@ -25,9 +29,9 @@ ls -la  # List files again to confirm permissions
 # Run generateSecret.sh
 ./generateSecret.sh
 
-# Check if .secret file was created
-if [ ! -f secretDir/.secret ]; then
-    echo "Failed to generate .secret file"
+# Check if .secret file was created and has content
+if [ ! -s secretDir/.secret ]; then
+    echo "Failed to generate content in .secret file"
     exit 1
 fi
 
